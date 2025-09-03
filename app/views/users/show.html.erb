@@ -1,0 +1,33 @@
+<h1>User Profile</h1>
+
+<div class="user-details">
+  <p>
+    <strong>First Name:</strong>
+    <%= @user.first_name %>
+  </p>
+
+  <p>
+    <strong>Last Name:</strong>
+    <%= @user.last_name %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+
+  <p>
+    <strong>Role:</strong>
+    <%= @user.role %>
+  </p>
+
+  <% if @user.admin? %>
+    <p>
+      <strong>Admin Status:</strong>
+      <span style="color: red;">ADMIN USER</span>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

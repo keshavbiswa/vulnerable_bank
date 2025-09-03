@@ -1,0 +1,37 @@
+<h1>Search Results</h1>
+
+<% if params[:query].present? %>
+  <p>Search query: <%= raw params[:query] %></p>
+<% end %>
+
+<div class="search-results">
+  <% if @users.any? %>
+    <h2>Users Found:</h2>
+    <% @users.each do |user| %>
+      <div class="user-result">
+        <p><strong>Name:</strong> <%= user.first_name %> <%= user.last_name %></p>
+        <p><strong>Email:</strong> <%= user.email %></p>
+        <p><strong>Role:</strong> <%= user.role %></p>
+        <% if user.respond_to?(:password_digest) %>
+          <!-- A03: SQL Injection vulnerability - exposing password hashes -->
+          <p><strong>Password Hash:</strong> <%= user.password_digest %></p>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <% if @accounts.any? %>
+    <h2>Accounts Found:</h2>
+    <% @accounts.each do |account| %>
+      <div class="account-result">
+        <p><strong>Account Type:</strong> <%= account.account_type %></p>
+        <p><strong>Balance:</strong> $<%= account.balance %></p>
+        <p><strong>Owner:</strong> <%= account.user.email if account.user %></p>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <% if @users.empty? && @accounts.empty? %>
+    <p>No results found.</p>
+  <% end %>
+</div>

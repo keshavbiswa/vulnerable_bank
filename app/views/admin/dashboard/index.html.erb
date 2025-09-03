@@ -1,0 +1,47 @@
+<h1>Admin Dashboard</h1>
+
+<div class="admin-stats">
+  <div class="stat-card">
+    <h3>Total Users</h3>
+    <p><%= @total_users %></p>
+  </div>
+  
+  <div class="stat-card">
+    <h3>Total Accounts</h3>
+    <p><%= @total_accounts %></p>
+  </div>
+  
+  <div class="stat-card">
+    <h3>Total Transactions</h3>
+    <p><%= @total_transactions %></p>
+  </div>
+</div>
+
+<div class="recent-activity">
+  <h2>Recent Users</h2>
+  <% @recent_users.each do |user| %>
+    <div class="user-item">
+      <p><strong><%= user.first_name %> <%= user.last_name %></strong></p>
+      <p>Email: <%= user.email %></p>
+      <p>Role: <%= user.role %></p>
+      <p>Admin: <%= user.admin? ? 'Yes' : 'No' %></p>
+    </div>
+  <% end %>
+  
+  <h2>Recent Transactions</h2>
+  <% @recent_transactions.each do |transaction| %>
+    <div class="transaction-item">
+      <p>Amount: $<%= transaction.amount %></p>
+      <p>Type: <%= transaction.transaction_type %></p>
+      <p>From: <%= transaction.from_account.account_number if transaction.from_account %></p>
+      <p>To: <%= transaction.to_account.account_number if transaction.to_account %></p>
+      <p>Status: <%= transaction.status %></p>
+    </div>
+  <% end %>
+</div>
+
+<div class="admin-actions">
+  <h2>Admin Actions</h2>
+  <p><a href="/admin/users">Manage All Users</a></p>
+  <p><a href="/users">View All User Profiles</a></p>
+</div>

@@ -1,0 +1,19 @@
+<h1>Admin Panel</h1>
+
+<div class="admin-info">
+  <h2>User Details (ID: <%= @user.id %>)</h2>
+  <p><strong>Name:</strong> <%= @user.first_name %> <%= @user.last_name %></p>
+  <p><strong>Email:</strong> <%= @user.email %></p>
+  <p><strong>Role:</strong> <%= @user.role %></p>
+  <p><strong>Admin:</strong> <%= @user.admin %></p>
+  
+  <h3>All System Users</h3>
+  <% @all_users.each do |user| %>
+    <p><%= user.first_name %> <%= user.last_name %> - <%= user.email %> (Admin: <%= user.admin %>)</p>
+  <% end %>
+  
+  <h3>All Accounts</h3>
+  <% @all_accounts.each do |account| %>
+    <p>Account #<%= account.id %> - Balance: $<%= account.balance %> - Owner: <%= account.user.email %></p>
+  <% end %>
+</div>

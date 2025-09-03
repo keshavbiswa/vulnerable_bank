@@ -1,0 +1,18 @@
+<h1>User Profile</h1>
+
+<div class="profile-info">
+  <h2>Personal Information</h2>
+  <p><strong>Name:</strong> <%= @user.first_name %> <%= @user.last_name %></p>
+  <p><strong>Email:</strong> <%= @user.email %></p>
+  
+  <% if @account %>
+    <p><strong>Account Balance:</strong> $<%= @account.balance %></p>
+    <p><strong>Account Type:</strong> <%= @account.account_type %></p>
+  <% end %>
+  
+  
+  <h3>Recent Transactions</h3>
+  <% Transaction.where(from_account: @account).each do |t| %>
+    <p><%= t.description %> - $<%= t.amount %></p>
+  <% end %>
+</div>
