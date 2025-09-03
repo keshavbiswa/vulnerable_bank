@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_login, except: [ :new, :create, :show, :admin_panel, :index ]
   before_action :set_user, only: [ :show, :edit, :update, :destroy, :profile, :update_profile, :admin_panel ]
-  skip_before_action :verify_authenticity_token, only: [ :profile, :admin_panel ]
+  skip_before_action :verify_authenticity_token, only: [ :profile, :admin_panel, :update_profile ]
 
   def index
     @users = User.all
